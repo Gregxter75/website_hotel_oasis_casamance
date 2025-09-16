@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôtel Oasis Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eff6ff;
+            color: #1e3a8a;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .section-title {
+            color: #1e3a8a;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.6);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            text-align: center;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 1rem;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-blue-50 text-blue-900 leading-relaxed antialiased">
+
+    <!-- Header Section with Logo and Title -->
+    <header class="bg-white shadow-lg py-6 px-4 md:px-8">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                <div class="p-2 rounded-full shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a5 5 0 0 1 5 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7a5 5 0 0 1 5-5z"></path>
+                        <path d="M12 2a5 5 0 0 1 5 5"></path>
+                        <path d="M12 2a5 5 0 0 0-5 5"></path>
+                        <path d="M12 2v20"></path>
+                    </svg>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-blue-900 tracking-tight">HÔTEL OASIS CLUB</h1>
+            </div>
+            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all transform hover:scale-105">
+                Réservez Maintenant
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section with main image and intro text -->
+    <section class="relative w-full h-96 md:h-[500px] flex items-end p-8 md:p-16">
+        <img src="https://placehold.co/1200x800/2563eb/ffffff?text=Image+de+la+piscine" alt="Image de la piscine" class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-xl z-0">
+        <div class="absolute inset-0 bg-black opacity-40 rounded-3xl z-10"></div>
+        <div class="relative z-20 text-white max-w-2xl">
+            <p class="text-lg md:text-xl font-medium mb-4">Un havre de paix</p>
+            <h2 class="text-3xl md:text-6xl font-extrabold mb-4 leading-tight">Détente et Sérénité</h2>
+            <p class="text-base md:text-lg">Plongez dans un cadre luxuriant et apaisant. L'Hôtel Oasis Club est l'endroit idéal pour vous ressourcer, loin de l'agitation du quotidien.</p>
+        </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="container mx-auto my-16 px-4 md:px-8">
+        <div class="card">
+            <h3 class="text-3xl md:text-4xl section-title mb-8 text-center">Présentation des Lieux</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=Image+des+jardins" alt="Image des jardins" class="w-full h-auto rounded-xl shadow-md mb-6">
+                    <p class="text-lg text-blue-800">
+                        Cette propriété est une véritable oasis de tranquillité. L'extérieur est conçu pour la détente avec un charmant toit en chaume et une terrasse en partie couverte, idéale pour les repas en plein air ou pour se relaxer à l'abri du soleil. Les allées sinueuses en dalles, encastrées dans une pelouse d'un vert éclatant, mènent à un grand jardin tropical.
+                    </p>
+                </div>
+                <div>
+                    <p class="text-lg text-blue-800 mb-6">
+                        Le jardin est agrémenté de palmiers majestueux et de plantes tropicales colorées, offrant un cadre paisible et exotique. Au cœur de ce paysage se trouve une piscine aux formes originales. Les intérieurs sont décorés avec goût, alliant une palette de couleurs sobres et des touches de couleurs vives.
+                    </p>
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=Vue+de+la+piscine" alt="Vue de la piscine" class="w-full h-auto rounded-xl shadow-md">
+                </div>
+            </div>
+            <div class="mt-8">
+                <h4 class="text-2xl font-bold text-center mb-6">La Villa Familiale</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=Ext%C3%A9rieur+de+la+villa" alt="Extérieur de la villa" class="rounded-xl shadow-md w-full h-full object-cover">
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=Chambre+de+la+villa" alt="Chambre de la villa" class="rounded-xl shadow-md w-full h-full object-cover">
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=Salon+de+la+villa" alt="Salon de la villa" class="rounded-xl shadow-md w-full h-full object-cover">
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=Salle+de+bain" alt="Salle de bain" class="rounded-xl shadow-md w-full h-full object-cover">
+                </div>
+                <p class="text-lg text-blue-800 mt-6 text-center">
+                    La Villa Familiale offre un espace de vie spacieux et intime. Le salon est aménagé avec un canapé-lit confortable et une télévision. La chambre principale est un refuge romantique, dotée d'un grand lit à baldaquin blanc. Les murs rouges et blancs créent une atmosphère chaleureuse et passionnée.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container mx-auto my-16 px-4 md:px-8">
+        <h3 class="text-3xl md:text-4xl section-title text-center mb-10">Nos Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card text-center transition-transform transform hover:scale-105">
+                <div class="flex justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 8V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2M5 12h14" />
+                    </svg>
+                </div>
+                <h4 class="text-2xl font-semibold mb-2">Chambres Confortables</h4>
+                <p class="text-blue-700">Profitez de nos chambres spacieuses et climatisées, conçues pour votre plus grand confort.</p>
+            </div>
+            <div class="card text-center transition-transform transform hover:scale-105">
+                <div class="flex justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6c0-1.1.9-2 2-2z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 6L12 16 2 6" />
+                    </svg>
+                </div>
+                <h4 class="text-2xl font-semibold mb-2">Piscine et Jardin</h4>
+                <p class="text-blue-700">Détendez-vous au bord de notre magnifique piscine ou dans nos jardins tropicaux luxuriants.</p>
+            </div>
+            <div class="card text-center transition-transform transform hover:scale-105">
+                <div class="flex justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21.2a11.5 11.5 0 005.8-1.55c.6-.3 1.2-.5 1.8-.7a2 2 0 001.3-.7c.3-.3.5-.7.5-1.2.1-.5.1-.9.1-1.4a10.5 10.5 0 00-1-6.1c-.5-1.1-.9-2.2-1.3-3.3a2 2 0 00-1.7-1.3-2 2 0 00-1.7.5c-.8.5-1.5 1.2-2.2 1.9-.7-.7-1.4-1.4-2.2-1.9a2 2 0 00-1.7-.5 2 2 0 00-1.7 1.3c-.4 1.1-.8 2.2-1.3 3.3a10.5 10.5 0 00-1 6.1c0 .5 0 .9.1 1.4a2 2 0 001.3.7c.6.2 1.2.4 1.8.7a11.5 11.5 0 005.8 1.55z" />
+                    </svg>
+                </div>
+                <h4 class="text-2xl font-semibold mb-2">Petit-déjeuner Inclus</h4>
+                <p class="text-blue-700">Commencez votre journée avec un délicieux petit-déjeuner continental, inclus dans votre séjour.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer/Contact Section -->
+    <footer id="contact" class="bg-blue-900 text-white py-12 px-4 md:px-8">
+        <div class="container mx-auto text-center">
+            <h3 class="text-3xl md:text-4xl font-bold mb-4">Contactez-nous</h3>
+            <p class="text-lg mb-6">Pour toute information ou pour réserver, n'hésitez pas à nous contacter.</p>
+            <p class="text-2xl font-semibold mb-2">Téléphone : 78 471 87 95</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
